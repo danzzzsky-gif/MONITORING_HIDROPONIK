@@ -1,48 +1,120 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Monitoring Hidroponik Solar</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanjaya Farm Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
 
-<header>
-<h1>Monitoring Sistem Hidroponik Tenaga Surya</h1>
-</header>
+    <div class="dashboard-app">
+        <aside class="sidebar">
+            <div>
+                <div class="polinema-logo-container">
+                    <img src="Logo_Politeknik_Negeri_Malang.png" alt="Logo Polinema" class="polinema-logo">
+                </div>
+                
+                <div class="logo"> Sanjaya Farm Hidroponik</div>
+                
+                <p style="font-size: 10px; color: #8bb3a6; margin-bottom: 15px;">NAVIGATION</p>
+                <ul class="nav-menu">
+                    <li class="active">Dashboard</li>
+                </ul>
+            </div>
+            <div class="user-profile">
+                <img src="FOTO.jpg" alt="User">
+                <div class="user-text">
+                    <h4>Danda Jonathan Irawan</h4>
+                    <p>NIM 2241190054</p>
+                </div>
+            </div>
+        </aside>
 
-<div class="container">
+        <main class="main-content">
+            <header class="header">
+                <h1>Dashboard Monitoring</h1>
+            </header>
 
-<div class="card">
-<h2>Tegangan Baterai</h2>
-<p id="tegangan">0 V</p>
-</div>
+            <div class="grid-container">
+                <div class="card col-4">
+                    <div class="card-title">Tegangan Panel</div>
+                    <div class="card-value">18.44 V</div>
+                    <div class="card-subtitle" style="color:#28a745;">Status: Normal (Charging)</div>
+                    <div class="chart-container"><canvas id="panelChart"></canvas></div>
+                </div>
+                <div class="card col-4">
+                    <div class="card-title">Nilai Sensor Suhu</div>
+                    <div class="card-value">26.8 °C</div>
+                    <div class="card-subtitle" style="color:#28a745;">Suhu Optimal</div>
+                    <div class="chart-container"><canvas id="suhuChart"></canvas></div>
+                </div>
+                <div class="card col-4">
+                    <div class="card-title">Nilai TDS Air</div>
+                    <div class="card-value">632 ppm</div>
+                    <div class="card-subtitle" style="color:#f39c12;">Batas Aman</div>
+                    <div class="chart-container"><canvas id="tdsChart"></canvas></div>
+                </div>
 
-<div class="card">
-<h2>Arus</h2>
-<p id="arus">0 A</p>
-</div>
+                <div class="card col-3" style="text-align: center;">
+                    <div class="card-title">Beban Baterai</div>
+                    <div class="card-value" style="font-size: 32px;">72%</div>
+                    <div class="doughnut-container"><canvas id="bateraiChart"></canvas></div>
+                    <p style="font-size:10px; color:#a0a0a0; margin-top:10px;">Kapasitas Tersisa</p>
+                </div>
+                
+                <div class="card col-3">
+                    <div class="card-title">Status Sistem</div>
+                    <div class="card-value" style="font-size: 20px; margin-bottom: 15px;">Aktif</div>
+                    <ul class="energy-list">
+                        <li><span class="dot" style="background:#28a745;"></span> Pompa Air Biasa <span style="color:#28a745; font-weight:bold;">ON</span></li>
+                        
+                        <li><span class="dot" style="background:#dc3545;"></span> Pompa AB Mix <span style="color:#dc3545; font-weight:bold;">OFF</span></li>
 
-<div class="card">
-<h2>Suhu Air</h2>
-<p id="suhu">0 °C</p>
-</div>
+                    </ul>
+                    <button class="btn-outline">Cek Perangkat</button>
+                </div>
 
-<div class="card">
-<h2>TDS Air</h2>
-<p id="tds">0 ppm</p>
-</div>
+                <div class="card col-6 map-card">
+                    <div class="card-title">Grafik TDS (Setiap 15 Menit)</div>
+                    <p class="card-subtitle">Fluktuasi nutrisi air pada sistem...</p>
+                    <div class="map-placeholder" style="background: transparent; height: 150px;">
+                        <canvas id="mainChart"></canvas>
+                    </div>
+                </div>
 
-<div class="card">
-<h2>Status Pompa</h2>
-<p id="pompa">OFF</p>
-</div>
+                <div class="stacked-cards">
+                    <div class="card dark">
+                        <div class="circle-badge border-orange">54 W</div>
+                        <div>
+                            <div class="card-value">Produksi Energi</div>
+                            <div class="card-title" style="margin-bottom:0;">Energi Solar yang dihasilkan saat ini</div>
+                        </div>
+                    </div>
+                    <div class="card light-row">
+                        <div class="circle-badge border-green">88%</div>
+                        <div>
+                            <div class="card-value" style="font-size: 16px;">Efisiensi Sistem</div>
+                            <div class="card-title" style="margin-bottom:0; color:#8bb3a6;">Rasio daya panel terhadap beban</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card col-6 promo" style="background: linear-gradient(135deg, #0b3a32, #124d43);">
+                    <div>
+                        <p style="font-size: 12px; margin-bottom: 10px; opacity: 0.8;">▰ Sanjaya Farm</p>
+                        <h2>Sistem Berjalan<br>Sangat Optimal</h2>
+                        <div style="margin-top: 20px; display:flex; align-items:center; gap:10px;">
+                            <p style="font-size: 12px; color: #a2d2c3;">Pembaruan terakhir: 2 Menit yang lalu</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 
-</div>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
