@@ -144,3 +144,92 @@ body {
 .logo {
     margin-bottom: 30px; /* Ganti margin-bottom: 40px; yang lama menjadi lebih kecil */
 }
+/* =========================================
+   RESPONSIVE DESIGN (Laptop, Tablet, HP)
+   ========================================= */
+
+/* Pengaturan untuk Layar Tablet (Lebar maksimal 1024px) */
+@media (max-width: 1024px) {
+    .dashboard-app {
+        flex-direction: column; /* Mengubah layout menjadi atas-bawah, bukan kiri-kanan */
+        height: auto;
+        min-height: 100vh;
+        border-radius: 0;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 15px 20px;
+        flex-direction: row; /* Sidebar berubah menjadi header horizontal di atas */
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .sidebar > div:first-child {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .polinema-logo-container {
+        margin-bottom: 0;
+        padding-top: 0;
+    }
+    
+    .polinema-logo { max-width: 45px; } /* Mengecilkan logo sedikit di layar kecil */
+    .logo { margin-bottom: 0; font-size: 18px; }
+    
+    /* Menyembunyikan teks menu yang tidak perlu agar area atas lebih lega */
+    .nav-menu, .sidebar > div:first-child > p { display: none; }
+
+    /* Penyesuaian Grid Kartu untuk Tablet (Jadi 2 Kolom) */
+    .col-4 { grid-column: span 6; } 
+    .col-3 { grid-column: span 6; } 
+    .col-6 { grid-column: span 12; } /* Grafik besar full width */
+    
+    .stacked-cards { 
+        grid-column: span 12; 
+        flex-direction: row; /* Berjejer ke samping */
+    }
+}
+
+/* Pengaturan untuk Layar Handphone (Lebar maksimal 768px) */
+@media (max-width: 768px) {
+    .sidebar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .user-profile {
+        width: 100%;
+        justify-content: flex-start;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding-top: 10px;
+    }
+
+    .main-content {
+        padding: 20px 15px; /* Mengurangi jarak pinggir layar */
+    }
+
+    .header h1 { font-size: 20px; }
+
+    /* Penyesuaian Grid Kartu untuk HP (Jadi 1 Kolom memanjang ke bawah) */
+    .col-4, .col-3, .col-6 { 
+        grid-column: span 12; 
+    }
+
+    .stacked-cards {
+        flex-direction: column; /* Ditumpuk ke bawah lagi */
+    }
+
+    .card.dark, .card.light-row {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    /* Memperbesar sedikit area grafik agar tetap mudah disentuh/dilihat di HP */
+    .chart-container { height: 70px; }
+    .map-placeholder { height: 200px; }
+}
