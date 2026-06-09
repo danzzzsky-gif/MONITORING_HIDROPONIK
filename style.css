@@ -1,235 +1,68 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background-color: #F8F9FB; color: #1A1D1F; min-height: 100vh; display: flex; }
+.dashboard-wrapper { display: grid; grid-template-columns: 240px 1fr; gap: 20px; width: 100%; max-width: 1600px; margin: auto; padding: 20px; }
 
-body {
-    background-color: #8c8f94;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-}
+.sidebar { background: white; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 20px rgba(0,0,0,0.02); height: calc(100vh - 40px); position: sticky; top: 20px; }
+.logo-container { display: flex; flex-direction: column; align-items: center; margin-bottom: 30px; }
+.logo-img { width: 55px; height: 55px; margin-bottom: 10px; object-fit: contain; }
+.logo-text { font-weight: 800; font-size: 16px; color: #FF6B35; text-align: center; }
 
-/* Container Utama */
-.dashboard-app {
-    background-color: #f4f7f6;
-    width: 100%;
-    max-width: 1200px;
-    height: 800px;
-    border-radius: 20px;
-    display: flex;
-    overflow: hidden;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-}
+.nav-group { display: flex; flex-direction: column; gap: 8px; }
+.nav-item { padding: 12px 16px; border-radius: 12px; font-size: 14px; color: #6F767E; cursor: pointer; font-weight: 600; text-align: left; transition: 0.3s; }
+.nav-item.active { background: #FF6B35; color: white; }
 
-/* Sidebar Kiri */
-.sidebar {
-    background-color: #0b3a32;
-    width: 240px;
-    padding: 30px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    color: white;
-}
+.creator-profile { display: flex; align-items: center; gap: 12px; padding-top: 20px; border-top: 1px solid #F0F0F0; margin-top: 20px; }
+.profile-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #EFEFEF; }
+.profile-info { display: flex; flex-direction: column; }
+.profile-name { font-size: 12px; font-weight: 700; color: #1A1D1F; }
+.profile-role { font-size: 10px; font-weight: 500; color: #9A9FA5; }
 
-.logo { font-size: 20px; font-weight: 700; margin-bottom: 40px; display: flex; align-items: center; gap: 10px;}
-.logo span { color: #28a745; }
+.main-content { display: flex; flex-direction: column; gap: 20px; width: 100%; min-width: 0; }
+.header { display: flex; justify-content: space-between; align-items: center; }
+.top-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+.bottom-section { display: grid; grid-template-columns: 1.6fr 1.2fr; gap: 20px; }
 
-.nav-menu { list-style: none; }
-.nav-menu li { margin-bottom: 10px; padding: 12px 15px; border-radius: 10px; color: #8bb3a6; font-size: 14px; cursor: pointer; transition: 0.3s;}
-.nav-menu li.active, .nav-menu li:hover { background-color: #124d43; color: white; }
+.card { background: white; border-radius: 20px; padding: 20px; border: 1px solid #F0F0F0; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+.card-label { font-size: 11px; font-weight: 700; color: #6F767E; text-transform: uppercase; margin-bottom: 12px; display: block; }
+.card-value { font-size: 28px; font-weight: 800; }
+.unit { font-size: 13px; font-weight: 500; color: #9A9FA5; }
+.primary-card { background: #FF6B35; color: white; border: none; }
+.primary-card .card-label, .primary-card .unit { color: rgba(255,255,255,0.8); }
 
-.user-profile { display: flex; align-items: center; gap: 10px; font-size: 13px; }
-.user-profile img { width: 40px; height: 40px; border-radius: 50%; background-color: #ccc; }
-.user-text h4 { font-weight: 600; }
-.user-text p { color: #8bb3a6; font-size: 11px; }
+.sub-grid { display: flex; flex-direction: row; gap: 10px; margin-top: 15px; }
+.mini-card { flex: 1; background: #F8F9FB; padding: 10px; border-radius: 12px; border: 1px solid #EFEFEF; }
+.primary-card .mini-card { background: rgba(255,255,255,0.1); border: none; }
+.mini-label { font-size: 10px; color: #6F767E; margin-bottom: 2px; display: block; }
+.primary-card .mini-label { color: rgba(255,255,255,0.8); }
+.mini-value { font-size: 13px; font-weight: 600; }
+.primary-card .mini-value { color: white; }
 
-/* Konten Kanan (Main Area) */
-.main-content {
-    flex: 1;
-    padding: 30px 40px;
-    overflow-y: auto;
-}
+.bat-container { background: #EFEFEF; height: 6px; border-radius: 3px; margin: 10px 0; overflow: hidden; }
+.bat-fill { background: #27AE60; height: 100%; width: 0%; transition: 0.5s; }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-}
+.pompa-status { display: flex; align-items: center; gap: 10px; padding: 12px; border-radius: 12px; background: #F8F9FB; margin-bottom: 8px; border: 1px solid transparent; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: #9A9FA5; }
+.pompa-status.active { background: #E8F8F5 !important; border: 1px solid #27AE60; }
+.pompa-status.active .dot { background: #27AE60; box-shadow: 0 0 10px #27AE60; }
+.pompa-status.active .pompa-text { color: #27AE60 !important; }
 
-.header h1 { font-size: 24px; color: #1a1a1a; }
-.btn-custom { background: #1a1a1a; color: white; padding: 10px 15px; border-radius: 8px; border: none; font-size: 12px; cursor: pointer; transition: 0.2s;}
-.btn-custom:hover { background: #333; }
+canvas { width: 100% !important; max-height: 250px; }
+#log-container { max-height: 150px; overflow-y: auto; font-size: 11px; color: #6F767E; }
 
-/* Sistem Grid (12 Kolom) */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 20px;
-}
+.btn-export { background: #FF6B35; color: white; border: none; padding: 10px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 12px; }
 
-.card {
-    background: #ffffff;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+.table-container { overflow-x: auto; margin-top: 10px; }
+.history-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; }
+.history-table th { background: #F8F9FB; padding: 12px 10px; color: #6F767E; }
+.history-table td { padding: 12px 10px; border-bottom: 1px solid #F0F0F0; }
 
-.col-4 { grid-column: span 4; }
-.col-3 { grid-column: span 3; }
-.col-6 { grid-column: span 6; }
-
-/* Tipografi Kartu */
-.card-title { font-size: 12px; color: #7a7a7a; font-weight: 600; margin-bottom: 10px;}
-.card-value { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 5px;}
-.card-subtitle { font-size: 10px; color: #a0a0a0; font-weight: 600;}
-
-/* Wadah Grafik Chart.js */
-.chart-container { position: relative; height: 50px; width: 100%; margin-top: 15px;}
-.doughnut-container { position: relative; height: 110px; width: 100%; display: flex; justify-content: center; margin-top: 10px;}
-
-/* List Energi */
-.energy-list { list-style: none; font-size: 11px; color: #7a7a7a; margin-bottom: 15px;}
-.energy-list li { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;}
-.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; }
-.btn-outline { width: 100%; padding: 10px; border: 1px solid #e0e0e0; background: white; border-radius: 8px; cursor:pointer; font-weight: 600; font-size: 12px; color: #1a1a1a; transition: 0.2s;}
-.btn-outline:hover { background: #f9f9f9; }
-
-/* Peta Placeholder */
-.map-card { justify-content: flex-start; }
-.map-placeholder { height: 130px; background: #eef2f0; border-radius: 10px; display:flex; justify-content:center; align-items:center; color:#a0a0a0; margin-top: 10px;}
-
-/* Kartu Baris Bawah */
-.stacked-cards { display: flex; flex-direction: column; gap: 20px; grid-column: span 6; }
-.card.dark { background-color: #0b1c1e; color: white; flex: 1; flex-direction: row; align-items: center; justify-content: flex-start; gap: 15px; }
-.card.dark .card-title { color: #8bb3a6; }
-.card.dark .card-value { color: white; font-size: 16px; }
-
-.light-row { flex: 1; flex-direction: row; align-items: center; justify-content: flex-start; gap: 15px;}
-
-.circle-badge { width: 50px; height: 50px; border-radius: 50%; display:flex; justify-content:center; align-items:center; font-weight:bold; font-size: 14px;}
-.border-orange { border: 4px solid #f39c12; color: white; }
-.border-green { border: 4px solid #8bb3a6; color: #0b3a32; }
-
-/* Kartu Komunitas */
-.card.promo { background: linear-gradient(135deg, #124d43, #28a745); color: white; position: relative; overflow: hidden; justify-content: space-between;}
-.card.promo h2 { font-size: 22px; font-weight: 700; line-height: 1.3; }
-.avatar { width: 30px; height: 30px; border-radius: 50%; background: #fff; border: 2px solid #28a745; opacity: 0.8;}
-/* --- Tambahan Gaya untuk Logo Polinema --- */
-
-.polinema-logo-container {
-    display: flex;
-    justify-content: center; /* Tengah secara horizontal */
-    align-items: center;    /* Tengah secara vertikal */
-    margin-bottom: 15px;     /* Jarak ke logo Sanjaya Farm */
-    padding-top: 10px;      /* Sedikit padding atas */
-}
-
-.polinema-logo {
-    max-width: 60px;        /* Batasi lebar maksimum agar pas di sidebar */
-    height: auto;           /* Jaga rasio aspek */
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); /* Tambahkan sedikit bayangan agar logo terlihat menonjol */
-}
-
-/* Sedikit penyesuaian margin logo Sanjaya Farm agar tidak terlalu rapat dengan logo Polinema */
-.logo {
-    margin-bottom: 30px; /* Ganti margin-bottom: 40px; yang lama menjadi lebih kecil */
-}
-/* =========================================
-   RESPONSIVE DESIGN (Laptop, Tablet, HP)
-   ========================================= */
-
-/* Pengaturan untuk Layar Tablet (Lebar maksimal 1024px) */
-@media (max-width: 1024px) {
-    .dashboard-app {
-        flex-direction: column; /* Mengubah layout menjadi atas-bawah, bukan kiri-kanan */
-        height: auto;
-        min-height: 100vh;
-        border-radius: 0;
-    }
-
-    .sidebar {
-        width: 100%;
-        padding: 15px 20px;
-        flex-direction: row; /* Sidebar berubah menjadi header horizontal di atas */
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .sidebar > div:first-child {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .polinema-logo-container {
-        margin-bottom: 0;
-        padding-top: 0;
-    }
-    
-    .polinema-logo { max-width: 45px; } /* Mengecilkan logo sedikit di layar kecil */
-    .logo { margin-bottom: 0; font-size: 18px; }
-    
-    /* Menyembunyikan teks menu yang tidak perlu agar area atas lebih lega */
-    .nav-menu, .sidebar > div:first-child > p { display: none; }
-
-    /* Penyesuaian Grid Kartu untuk Tablet (Jadi 2 Kolom) */
-    .col-4 { grid-column: span 6; } 
-    .col-3 { grid-column: span 6; } 
-    .col-6 { grid-column: span 12; } /* Grafik besar full width */
-    
-    .stacked-cards { 
-        grid-column: span 12; 
-        flex-direction: row; /* Berjejer ke samping */
-    }
-}
-
-/* Pengaturan untuk Layar Handphone (Lebar maksimal 768px) */
-@media (max-width: 768px) {
-    .sidebar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    .user-profile {
-        width: 100%;
-        justify-content: flex-start;
-        border-top: 1px solid rgba(255,255,255,0.1);
-        padding-top: 10px;
-    }
-
-    .main-content {
-        padding: 20px 15px; /* Mengurangi jarak pinggir layar */
-    }
-
-    .header h1 { font-size: 20px; }
-
-    /* Penyesuaian Grid Kartu untuk HP (Jadi 1 Kolom memanjang ke bawah) */
-    .col-4, .col-3, .col-6 { 
-        grid-column: span 12; 
-    }
-
-    .stacked-cards {
-        flex-direction: column; /* Ditumpuk ke bawah lagi */
-    }
-
-    .card.dark, .card.light-row {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-    }
-    
-    /* Memperbesar sedikit area grafik agar tetap mudah disentuh/dilihat di HP */
-    .chart-container { height: 70px; }
-    .map-placeholder { height: 200px; }
+@media screen and (max-width: 850px) {
+    body { display: block !important; }
+    .dashboard-wrapper { display: flex !important; flex-direction: column !important; padding: 15px !important; }
+    .sidebar { width: 100% !important; height: auto !important; position: relative !important; top: 0 !important; margin-bottom: 15px; }
+    .logo-container { flex-direction: row !important; gap: 10px !important; margin-bottom: 15px !important; }
+    .nav-group { flex-direction: row !important; overflow-x: auto !important; }
+    .nav-item { white-space: nowrap !important; }
+    .creator-profile { display: none !important; }
+    .top-row, .bottom-section { display: flex !important; flex-direction: column !important; width: 100% !important; }
 }
