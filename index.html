@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sanjaya Farm | Dashboard Skripsi</title>
+    <title>Monitoring Selada | Dashboard Skripsi</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -15,8 +15,8 @@
         <div class="sidebar">
             <div>
                 <div class="logo-container">
-                    <img src="Logo_Politeknik_Negeri_Malang.png" alt="Logo" class="logo-img">
-                    <div class="logo-text">SANJAYA FARM</div>
+                    <img src="Logo_Politeknik_Negeri_Malang.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+                    <div class="logo-text" style="cursor: default; user-select: none;">MONITORING SELADA</div>
                 </div>
                 <div class="nav-group">
                     <div class="nav-item active" id="btn-overview">Dashboard</div>
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="creator-profile">
-                <img src="FOTO.jpg" alt="Danda" class="profile-img">
+                <img src="FOTO.jpg" alt="Danda" class="profile-img" onerror="this.style.display='none'">
                 <div class="profile-info">
                     <span class="profile-name">Danda Jonathan I.</span>
                     <span class="profile-role">2241190054</span>
@@ -72,8 +72,8 @@
                     <div style="display: flex; flex-direction: column; gap: 20px;">
                         <div class="card"> 
                             <span class="card-label">Otomasi Pompa</span>
-                            <div class="pompa-status" id="status-a"><div class="dot"></div><div style="flex-grow:1">Pompa Nutrisi</div><div id="txt-a" class="pompa-text">STANDBY</div></div>
-                            <div class="pompa-status" id="status-b"><div class="dot"></div><div style="flex-grow:1">Pompa Air Baku</div><div id="txt-b" class="pompa-text">STANDBY</div></div>
+                            <div class="pompa-status" id="status-a"><div class="dot"></div><div style="flex-grow:1; font-weight: 600;">Pompa Nutrisi</div><div id="txt-a" class="pompa-text">STANDBY</div></div>
+                            <div class="pompa-status" id="status-b"><div class="dot"></div><div style="flex-grow:1; font-weight: 600;">Pompa Air Baku</div><div id="txt-b" class="pompa-text">STANDBY</div></div>
                         </div>
                         <div class="card" style="flex-grow:1"><span class="card-label">Log Aktivitas</span><div id="log-container"></div></div>
                     </div>
@@ -91,20 +91,41 @@
                 </div>
             </div>
 
-            <div id="tab-history-data" style="display: none; flex-direction: column; gap: 20px;">
+            <div id="tab-history" style="display: none; flex-direction: column; gap: 20px;">
                 <div class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                        <span class="card-label">Laporan Data Sensor</span>
-                        <button id="btn-export-pdf" class="btn-export">📄 Cetak PDF</button>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                        <span class="card-label" style="font-size: 14px; margin: 0;">Laporan Data Sensor Lengkap</span>
+                        
+                        <!-- Area Kontrol: Filter Tanggal & Export PDF -->
+                        <div class="filter-container">
+                            <input type="date" id="filter-tanggal" class="filter-input" title="Filter berdasarkan tanggal">
+                            <button id="btn-reset-filter" class="btn-reset">Reset</button>
+                            <button id="btn-export-pdf" class="btn-export">📄 Cetak PDF</button>
+                        </div>
                     </div>
                     <div class="table-container">
                         <table class="history-table">
-                            <thead><tr><th>Waktu</th><th>TDS</th><th>Suhu</th><th>Panel (W)</th><th>Bat (V)</th><th>Status</th></tr></thead>
-                            <tbody id="history-table-body"></tbody>
+                            <thead>
+                                <tr>
+                                    <th>Waktu</th>
+                                    <th>TDS (ppm)</th>
+                                    <th>Suhu (°C)</th>
+                                    <th>Panel (V)</th>
+                                    <th>Panel (A)</th>
+                                    <th>Panel (Wh)</th>
+                                    <th>Bat (V)</th>
+                                    <th>Bat (A)</th>
+                                    <th>Beban (Wh)</th>
+                                    <th>Status Pompa</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-table-body">
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
     <script type="module" src="app.js"></script>

@@ -48,13 +48,22 @@ body { font-family: 'Inter', sans-serif; background-color: #F8F9FB; color: #1A1D
 
 canvas { width: 100% !important; max-height: 250px; }
 #log-container { max-height: 150px; overflow-y: auto; font-size: 11px; color: #6F767E; }
+#log-container::-webkit-scrollbar { width: 4px; }
+#log-container::-webkit-scrollbar-thumb { background: #D9D9D9; border-radius: 4px; }
 
-.btn-export { background: #FF6B35; color: white; border: none; padding: 10px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 12px; }
+.btn-export { background: #FF6B35; color: white; border: none; padding: 10px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 12px; transition: 0.2s; }
+.btn-export:hover { background: #E55A2A; }
 
 .table-container { overflow-x: auto; margin-top: 10px; }
 .history-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; }
 .history-table th { background: #F8F9FB; padding: 12px 10px; color: #6F767E; }
 .history-table td { padding: 12px 10px; border-bottom: 1px solid #F0F0F0; }
+
+/* --- FITUR FILTER TANGGAL --- */
+.filter-container { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.filter-input { padding: 6px 12px; border: 1px solid #EFEFEF; border-radius: 6px; outline: none; font-family: 'Inter', sans-serif; cursor: pointer; color: #1A1D1F; font-size: 12px; background-color: white; }
+.btn-reset { padding: 6px 12px; background: #F4F4F4; color: #6F767E; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 12px; transition: 0.2s; }
+.btn-reset:hover { background: #E8E8E8; color: #1A1D1F; }
 
 @media screen and (max-width: 850px) {
     body { display: block !important; }
